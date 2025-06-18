@@ -1,9 +1,10 @@
 'use client'
 
 import newStyled from "@emotion/styled";
-import Card from "./Card"
 import { animate, motion, useMotionTemplate, useMotionValue, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
+import Link from "next/link";
+import { GithubIcon } from "./Github";
 
 const RotationWrapper = newStyled(motion.div)`
   width: 100%;
@@ -70,20 +71,23 @@ const sheenPosition = useTransform(
 const sheenOpacity = useTransform(
   sheenPosition,
   [-100, 0, 100, 200],
-  [0, 0.15, 0.1, 0]
+  [0, 0.1, 0.1, 0]
 );
 
 const sheenGradient = useMotionTemplate`linear-gradient(
   55deg,
-  transparent 0%,
+  transparent,
   rgba(255 255 255 / ${sheenOpacity}) ${sheenPosition}%,
   transparent)`;
   return (
     <div className='relative w-screen h-screen flex items-center justify-center overflow-hidden perspective-[1000px]'>
       <RotationWrapper style={{ rotateX, rotateY }}>
-        <div className="relative z-10 h-[50vw] w-[50vw] bg-black bg-[radial-gradient(#f3f3f3,transparent_2px)] [background-size:50px_50px]"></div>        
+        <div className="relative h-[50vw] w-[50vw] bg-black bg-[radial-gradient(#f3f3f3,transparent_2px)] [background-size:50px_50px]"></div>       
           <motion.div ref={cardRef} style={{ backgroundImage: sheenGradient }} className="absolute top-1/4 z-10 translate-z-40">
-            <Card />
+            <motion.div className='h-96 w-72 flex flex-col items-center justify-center gap-4 border border-gray-200/50 bg-white/20 backdrop-blur-lg rounded-xl p-10 font-mono text-center'>
+                <div>Follow me on Github</div>
+                <Link href='https://github.com/7sumona02' className='bg-neutral-900 p-3 rounded-full'><GithubIcon /></Link>
+            </motion.div>
           </motion.div>
       </RotationWrapper>
     </div>
