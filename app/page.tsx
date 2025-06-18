@@ -15,7 +15,7 @@ const RotationWrapper = newStyled(motion.div)`
   transform-style: preserve-3d;
 `;
 
-const page = () => {
+const Page = () => {
   const mouseX = useMotionValue(
     typeof window !== 'undefined' ? window.innerWidth / 2 : 0
 );
@@ -94,4 +94,4 @@ const sheenGradient = useMotionTemplate`linear-gradient(
   )
 }
 
-export default page
+export default Page
